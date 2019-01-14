@@ -4,7 +4,8 @@
   "description": "MEAN FSD Capsule Project - Task Manager Backend",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "babel-watch server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/HIRIYURS/TaskManagerBackend/issues"
   },
-  "homepage": "https://github.com/HIRIYURS/TaskManagerBackend#readme"
+  "homepage": "https://github.com/HIRIYURS/TaskManagerBackend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.3",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.8"
+  }
 }
