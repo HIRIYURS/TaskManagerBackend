@@ -65,17 +65,26 @@ router.route('/tasks/:id').get((req, res) => {
 });
 
 router.route('/tasks/add').post((req, res) => {
+    logger.info({ "message":"Adding New Task: ",
+                  "req.body": req.body
+                });    
     let task = new Task(req.body);
     task.save()
         .then(task => {
             res.status(200).json({'issue': 'Added Successfully'});
+            logger.info({ "message":"Adding Successfully"});
         })
         .catch(err => {
             res.status(400).send('Failed to create new record');
+            logger.info({ "message":"Add Failed"});
         });
 });
 
 router.route('/tasks/update/:id').post((req, res) => {
+    logger.info({ "message":"Updating Task: ",
+                  "req.params.id": req.params.id,
+                  "req.body": req.body
+                });
     Task.findById(req.params.id, (err, task) => {
         if (!task)
             return next(new Error('Could not load the document'));
@@ -84,7 +93,9 @@ router.route('/tasks/update/:id').post((req, res) => {
             task.start_date = req.body.start_date;
             task.end_date = req.body.end_date;
             task.priority = req.body.priority;
-            task.parent = req.body.parent;
+            if (req.body.parent !== undefined) {
+                task.parent = req.body.parent;
+            }
             task.save().then(task => {
                 res.json('Update Done');
             }).catch(err => {
@@ -95,11 +106,33 @@ router.route('/tasks/update/:id').post((req, res) => {
 });
 
 router.route('/tasks/delete/:id').get((req, res) => {
+    logger.info("Deleting Task: ", req.params.id);
     Task.findByIdAndRemove({_id: req.params.id}, (err, task) => {
         if (err) {
             res.json('Error deleting issue');
         } else {
             res.json('Removed Successfully');
+        }
+    });
+});
+
+router.route('/tasks/endtask/:id').get((req, res) => {
+    logger.info("Ending Task: ", req.params.id);
+    Task.findById(req.params.id, (err, task) => {
+        if (!task)
+            return next(new Error('Could not load the document'));
+        else {
+            task.task = task.task;
+            task.start_date = task.start_date;
+            task.end_date = task.end_date;
+            task.priority = task.priority;
+            task.parent = task.parent;
+            task.finished = "true";
+            task.save().then(task => {
+                res.json('Ended the task');
+            }).catch(err => {
+                res.status(400).send('End Task Failed!');
+            });
         }
     });
 });

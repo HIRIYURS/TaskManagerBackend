@@ -24,7 +24,7 @@ let Task = new Schema({
         min: 0,
         max: 30
     },
-    finsihed: {
+    finished: {
         type: Boolean,
         default: false
     },
