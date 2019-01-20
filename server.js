@@ -46,19 +46,23 @@ router.route('/tasks').get((req, res) => {
     logger.info('Request Received!');
 
     Task.find((err, tasks) => {
-        if (err) 
-            console.log(err);
-        else {
-            res.json(tasks);
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            res.status(200).json(tasks);
         }
     });
 });
 
 router.route('/tasks/:id').get((req, res) => {
     Task.findById(req.params.id, (err, task) => {
-        if (err)
-            console.log(err);
-        else {
+        if (err) {
+            logger.info({ "message":"Error Getting the Task",
+                          "Task ID": req.params.id,
+                          "Error": err
+                        });
+            res.status(400).json({});
+        } else {
             res.json(task);
         }
     });
@@ -142,7 +146,8 @@ app.use('/', router);
 
 //app.get('/', (req, res) => res.send("My First Ever Node/Express Server: Hello World, I have Arrived!!"));
 
-app.listen(port, hostname, () => {
+var server = app.listen(port, hostname, () => {
     logger.info(`My First ever Express Server running on Port ${hostname}:${port}`);
 });
 
+module.exports = server;

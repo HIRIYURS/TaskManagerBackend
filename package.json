@@ -4,7 +4,8 @@
   "description": "MEAN FSD Capsule Project - Task Manager Backend",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-init": "jasmine init",
+    "test": "babel-watch ./node_modules/jasmine/bin/jasmine",
     "dev": "babel-watch server.js"
   },
   "repository": {
@@ -26,6 +27,8 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "babel-watch": "^2.0.8"
+    "babel-watch": "^2.0.8",
+    "jasmine": "^3.3.1",
+    "request": "^2.88.0"
   }
 }
