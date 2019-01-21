@@ -101,7 +101,7 @@ router.route('/tasks/update/:id').post((req, res) => {
                 task.parent = req.body.parent;
             }
             task.save().then(task => {
-                res.json('Update Done');
+                res.status(200).json('Update Done');
             }).catch(err => {
                 res.status(400).send('Update Failed!');
             });
