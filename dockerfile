@@ -1,4 +1,4 @@
-FROM node:10
+FROM node
 RUN mkdir -p /usr/src/taskmgrbackend
 WORKDIR /usr/src/taskmgrbackend
 COPY package.json /usr/src/taskmgrbackend
