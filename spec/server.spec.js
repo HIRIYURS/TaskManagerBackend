@@ -3,9 +3,11 @@ var Request = require("request");
 describe("Test Backend",() => {
     var server;
     beforeAll(() => {
+        console.log("Opening The Server");
         server = require("../server");
     });
     afterAll(() => {
+        console.log("Closing The Server");
         server.close();
     });
 

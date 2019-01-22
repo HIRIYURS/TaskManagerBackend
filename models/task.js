@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
-import { StringDecoder } from 'string_decoder';
+//import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+//import { StringDecoder } from 'string_decoder';
 
 const Schema = mongoose.Schema;
 
@@ -35,4 +36,5 @@ let Task = new Schema({
     }
 });
 
-export default mongoose.model('Task', Task);
+//export default mongoose.model('Task', Task);
+module.exports = mongoose.model('Task', Task);

@@ -1,10 +1,18 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import winston from 'winston';
+// import express from 'express';
+// import cors from 'cors';
+// import bodyParser from 'body-parser';
+// import mongoose from 'mongoose';
+// import winston from 'winston';
 
-import Task from './models/task';
+// import Task from './models/task';
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const winston = require('winston');
+
+const Task = require('./models/task');
+
 
 // Logging level
 //winston.level = process.env.LOG_LEVEL

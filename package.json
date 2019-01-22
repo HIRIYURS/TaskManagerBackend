@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test-init": "jasmine init",
-    "test": "babel-watch ./node_modules/jasmine/bin/jasmine",
+    "test": "jasmine",
     "dev": "babel-watch server.js"
   },
   "repository": {
