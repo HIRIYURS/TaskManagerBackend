@@ -1,8 +1,8 @@
-FROM node:8
-RUN mkdir -p /usr/src/taskmgrangapp
-WORKDIR /usr/src/taskmgrangapp
-COPY package.json /usr/src/taskmgrangapp
+FROM node:10
+RUN mkdir -p /usr/src/taskmgrbackend
+WORKDIR /usr/src/taskmgrbackend
+COPY package.json /usr/src/taskmgrbackend
 RUN npm install
-COPY . /usr/src/taskmgrangapp
+COPY . /usr/src/taskmgrbackend
 EXPOSE 8001
 CMD ["npm" "start"]
